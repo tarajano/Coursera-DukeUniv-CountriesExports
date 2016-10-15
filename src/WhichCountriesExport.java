@@ -3,6 +3,13 @@ import edu.duke.*;
 import org.apache.commons.csv.*;
 
 public class WhichCountriesExport {	
+	public static void countriesExportingOverX(CSVParser parser, String amount_string){
+		for(CSVRecord record : parser){
+			if(record.get("Value (dollars)").length() > amount_string.length()){
+				System.out.println(record.get("Country")+": "+record.get("Value (dollars)"));
+			}
+		}
+	}
 	public static int numberOfExportersOfX(CSVParser parser, String export){
 		int exporters_count = 0;
 		for(CSVRecord record : parser){
@@ -41,6 +48,7 @@ public class WhichCountriesExport {
 		//printCountriesExportingXnY(file_parser,"gold","diamonds");
 		//System.out.println("countryInfo = "+countryInfo(file_parser,"Germany"));
 		//System.out.println("exporters = "+numberOfExportersOfX(file_parser,"gold"));
+		countriesExportingOverX(file_parser,"$999,999,999");
 	}
 
 }
