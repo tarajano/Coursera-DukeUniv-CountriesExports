@@ -3,13 +3,22 @@ import edu.duke.*;
 import org.apache.commons.csv.*;
 
 public class WhichCountriesExport {
-	public static void printCountriesExporting(CSVParser parser, String export){
+	public static void printCountriesExportingX(CSVParser parser, String export){
 		for(CSVRecord record : parser){
 			if(record.get("Exports").contains(export)){
 				System.out.println(record.get("Country"));
 			}
 		}
 	}
+	public static void printCountriesExportingXnY(CSVParser parser, String export1, String export2){
+		for(CSVRecord record : parser){
+			if(record.get("Exports").contains(export1) && record.get("Exports").contains(export2)){
+				System.out.println(record.get("Country"));
+			}
+		}
+	}
+	
+	
 	public static String countryInfo(CSVParser parser, String country){
 		//get all info from country
 		for(CSVRecord record : parser){
@@ -20,11 +29,10 @@ public class WhichCountriesExport {
 		return "";
 	}
 	public static void main(String[] args) {
-		String exported_good = "tea";
 		FileResource input_file = new FileResource("./exports/exports_small.csv");
 		CSVParser file_parser = input_file.getCSVParser();
-		//printCountriesExporting(file_parser,exported_good);
-		System.out.println("countryInfo = "+countryInfo(file_parser,"Germany"));
+		printCountriesExportingXnY(file_parser,"gold","diamonds");
+		//System.out.println("countryInfo = "+countryInfo(file_parser,"Germany"));
 	}
 
 }
