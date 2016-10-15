@@ -2,7 +2,16 @@
 import edu.duke.*;
 import org.apache.commons.csv.*;
 
-public class WhichCountriesExport {
+public class WhichCountriesExport {	
+	public static int numberOfExportersOfX(CSVParser parser, String export){
+		int exporters_count = 0;
+		for(CSVRecord record : parser){
+			if(record.get("Exports").contains(export)){
+				exporters_count++;
+			}
+		}
+		return exporters_count;
+	}	
 	public static void printCountriesExportingX(CSVParser parser, String export){
 		for(CSVRecord record : parser){
 			if(record.get("Exports").contains(export)){
@@ -17,8 +26,6 @@ public class WhichCountriesExport {
 			}
 		}
 	}
-	
-	
 	public static String countryInfo(CSVParser parser, String country){
 		//get all info from country
 		for(CSVRecord record : parser){
@@ -31,8 +38,9 @@ public class WhichCountriesExport {
 	public static void main(String[] args) {
 		FileResource input_file = new FileResource("./exports/exports_small.csv");
 		CSVParser file_parser = input_file.getCSVParser();
-		printCountriesExportingXnY(file_parser,"gold","diamonds");
+		//printCountriesExportingXnY(file_parser,"gold","diamonds");
 		//System.out.println("countryInfo = "+countryInfo(file_parser,"Germany"));
+		//System.out.println("exporters = "+numberOfExportersOfX(file_parser,"gold"));
 	}
 
 }
