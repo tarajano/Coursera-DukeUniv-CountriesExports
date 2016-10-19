@@ -43,12 +43,14 @@ public class WhichCountriesExport {
 		return "";
 	}
 	public static void main(String[] args) {
-		FileResource input_file = new FileResource("./exports/exports_small.csv");
+		FileResource input_file = new FileResource("./exports/exportdata.csv");
 		CSVParser file_parser = input_file.getCSVParser();
-		//printCountriesExportingXnY(file_parser,"gold","diamonds");
-		//System.out.println("countryInfo = "+countryInfo(file_parser,"Germany"));
+		// From the lines below, uncomment only one line at each
+		// execution or create new parser for every instruction you want to exec.
+		//printCountriesExportingXnY(file_parser,"fish","nuts");
+		//System.out.println("countryInfo = "+countryInfo(file_parser,"Nauru"));
 		//System.out.println("exporters = "+numberOfExportersOfX(file_parser,"gold"));
-		countriesExportingOverX(file_parser,"$999,999,999");
+		//countriesExportingOverX(file_parser,"$999,999,999,999");
 	}
 
 }
